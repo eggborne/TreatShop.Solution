@@ -8,25 +8,29 @@
 
   @if (User.Identity.IsAuthenticated)
   {
-    <h2>Flavors for @ViewBag.UserName!</h2>
-    @if (Model.Count == 0)
-    {
-      <h3>No flavors have been added yet!</h3>
-    } 
-      @foreach (Flavor flavor in Model)
-      {
-        <h3 class="flavor-list">@Html.ActionLink(@flavor.Name, "Details", "Flavors", new { id = @flavor.FlavorId})</h3>
-      }
+    <div class="button-area">
+      <div class="flavor-links">
+      <span>@Html.ActionLink(".Manage flavors", "Index", "Flavors")</span> 
+      <span>@Html.ActionLink(".Manage treats", "Index", "Treats")</span>
+      <span>@Html.ActionLink(".Create or manage an account", "Index", "Account")</span>
+    </div>
+
+  </div>
   }
   else
   {
-    <h3>Flavors</h3>
-    <p>Please @Html.ActionLink("log in", "LogIn", "Account") to view or manage your flavors.</p>
-  }
+    <h3>Treats</h3>
+    <ul class="treat-list">
+      <li>Treat 1</li>
+      <li>Treat 2</li>
+    </ul>
 
-  <div class="flavor-links">
-    <span>@Html.ActionLink(".Manage flavors", "Index", "Flavors")</span> 
-    <span>@Html.ActionLink(".Manage treats", "Index", "Treats")</span>
-    <span>@Html.ActionLink(".Create or manage an account", "Index", "Account")</span>
-  </div>
+    <h3>Flavors</h3>
+    <ul class="flavor-list">
+      <li>Flavor 1</li>
+      <li>Flavor 2</li>
+    </ul>
+
+    <p class="not-logged-in-message">Please <a onclick="showModal('login')">log in</a> to add or delete treats and flavors.</p>
+  }
 </div>

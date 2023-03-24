@@ -2,30 +2,20 @@
 
 @model LoginViewModel
 
-<div id="delete-modal" class="modal obscured">
-  <div class="modal-message">Log in</div>
-  <div class="button-area">
-  @if(!ViewData.ModelState.IsValid) 
-  {
-  @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:") 
-  }
-
-  @using (Html.BeginForm("Index", "Home"))
-  {
-    @Html.LabelFor(m => m.Email)
-    @Html.TextBoxFor(m => m.Email)
-
-    @Html.LabelFor(m => m.Password)
-    @Html.EditorFor(m => m.Password)
-
-    <button class="green" type="submit">Log in</button>
-  }
-  </div>
-  <div class="button-area">
-    <button onclick="hideModal('delete')">Cancel</button>
-  </div>
-</div>
-
 <header>
   <h1>Pierre's Sweet and Savory Treats</h1>
+  <div class="button-area">
+  @if (!User.Identity.IsAuthenticated) {
+    @await Html.PartialAsync("RegisterModal")
+    @await Html.PartialAsync("LoginModal")
+    <button class="green" onclick="showModal('login')">Log in</button>
+    <button class="yellow" onclick="showModal('register')">Register</button>
+  } else {
+    <div>logged in as <span class="highlighted">@User.Identity.Name</span></div>
+    @using (Html.BeginForm("LogOff", "Account"))
+    {
+      <button class="red" type="submit">Log out</button>
+    }
+  }
+  </div>
 </header>
