@@ -25,12 +25,11 @@
   <div class="home-footer">
   @if (User.Identity.IsAuthenticated)
   {
+    @await Html.PartialAsync("CreateTreatModal")
+    @await Html.PartialAsync("CreateFlavorModal")
     <div class="button-area">
-      <a href='@Url.Action("Index", "Treats")'>
-        <button>Manage Treats</button>
-      <a href='@Url.Action("Index", "Flavors")'>
-        <button>Manage Flavors</button>
-      </a>
+      <button onclick="showModal('create-treat')">Create a Treat</button>
+      <button onclick="showModal('create-flavor')">Create a Flavor</button>
     </div>
   }
   else

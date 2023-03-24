@@ -1,5 +1,7 @@
 :root {
   --header-height: 4rem;
+	--flavor-color: #4b3b28;
+	--treat-color: #282d4b;
 }
 
 *, * *, * * * {
@@ -361,6 +363,14 @@ span {
 
 .modal#delete-modal {
 	background-color: rgb(76, 64, 64);
+}
+
+.modal#create-flavor-modal {
+	background-color: var(--flavor-color)
+}
+
+.modal#create-treat-modal {
+	background-color: var(--treat-color)
 }
 
 .not-logged-in-message {
