@@ -21,13 +21,13 @@ body {
 }
 
 main {
-	transition: all 300ms ease-out;
-	transform-origin: top left;
+	transition: all 200ms ease-out;
+	transform-origin: center left;
 }
 
 main.obscured {
-	transform: scale(0.9);
-	opacity: 0;
+	filter: blur(0.2rem);
+	transform: scaleX(0.95);
 }
 
 header, footer {
@@ -186,13 +186,13 @@ form > .form-column > div {
   width: 22rem;
 }
 
-.treat-list > button {
+.result-list > button {
 	margin-top: 0;
 	margin-bottom: 0;
 }
 
 .highlighted {
-	color: orange;
+	color: rgb(158, 219, 79);
 	font-weight: bold;
 }
 
@@ -242,13 +242,33 @@ button.treat {
 	background-color: var(--treat-color);
 }
 
+.result-list li {
+	transition: all 200ms ease;
+}
+
+.result-list.flavor li {
+	background-color: var(--flavor-color);
+}
+
+.result-list.treat li {
+	background-color: var(--treat-color);
+}
+
+.result-list.flavor li:hover {
+	background-color: var(--flavor-bg-color);
+}
+
+.result-list.treat li:hover {
+	background-color: var(--treat-bg-color);
+}
+
 button:hover {
 	outline: 0.25rem solid rgb(169, 236, 246);
 	scale: 1.05;
 	color: rgb(169, 236, 246);
 }
 button:active {
-	scale: 0.9;
+	scale: 0.95;
 }
 
 footer {
@@ -347,7 +367,7 @@ span {
 	justify-items: center;
 	gap: 1rem;
 	padding: calc(var(--header-height) / 2);
-	transition: scale 300ms ease, opacity 200ms ease;
+	transition: all 300ms ease, opacity 200ms ease;
 	z-index: 1;
 	border-radius: 1rem;
 }
@@ -360,7 +380,6 @@ span {
 	font-size: 1.5rem;
 	width: 100%;
 	display: flex;
-	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	gap: 0.5rem;
@@ -372,7 +391,8 @@ span {
 }
 
 .modal.obscured {
-	scale: 0.95;
+	filter: blur(0.2rem);
+	transform: scaleX(0.95);
 	opacity: 0;
 	pointer-events: none;
 }

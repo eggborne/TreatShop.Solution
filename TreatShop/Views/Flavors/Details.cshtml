@@ -8,7 +8,7 @@
 <h2>Flavor Details for <span class="highlighted">@Html.DisplayFor(model => model.Name)</span></h2>
 
 <h3>Treats with this flavor:</h3>
-<ul class="treat-list">
+<ul class="result-list treat">
   @if (Model.JoinEntities.Count == 0) {
     <div class="empty-list-message">There are no treats associated with this flavor!</div>
   }
@@ -34,14 +34,14 @@
 </a> *@
 
 <a href='@Url.Action("Index", "Home")'>
-  <button>Back</button>
+  <button>Home</button>
 </a>
 
 @if(User.Identity.IsAuthenticated) {
   <button class="red" onclick="showModal('delete-flavor')">Delete Flavor</button>
 
   <div id="add-treat-modal" class="modal obscured">
-    <div class="modal-message">Add Flavor @Model.Name to a Treat</div>
+    <div class="modal-message">Add Flavor <span class="highlighted">@Model.Name</span> to a Treat</div>
     
     <div class="error-messages">
       @if(!ViewData.ModelState.IsValid) 
@@ -54,12 +54,11 @@
     {
       <input hidden value=@Model.FlavorId name="id">;
       <div class="form-row">
-        <h3>Treat</h3>
         @if (ViewBag.Treats.Count == 0) {
           <div class="empty-list-message">You must create a Flavor!</div>
         }
         <select name="treatId">
-          <option value="" selected disabled hidden>Choose one</option>
+          <option value="" selected disabled hidden>Choose Treat</option>
           @foreach (Treat treat in ViewBag.Treats) {
             <option value=@treat.TreatId>@treat.Name</option>
           }
