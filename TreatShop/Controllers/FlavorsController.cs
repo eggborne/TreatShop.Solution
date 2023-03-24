@@ -1,12 +1,12 @@
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using TreatShop.Models;
-using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TreatShop.Controllers
 {
+  [Authorize]
   public class FlavorsController : Controller
   {
     private readonly TreatShopContext _db;
@@ -14,12 +14,6 @@ namespace TreatShop.Controllers
     public FlavorsController(TreatShopContext db)
     {
       _db = db;
-    }
-
-    public ActionResult Index()
-    {
-      List<Flavor> model = _db.Flavors.ToList();
-      return View(model);
     }
 
     public ActionResult Create()
@@ -36,6 +30,7 @@ namespace TreatShop.Controllers
       return RedirectToAction("Index", "Home");
     }
 
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
       Flavor thisTreat = _db.Flavors

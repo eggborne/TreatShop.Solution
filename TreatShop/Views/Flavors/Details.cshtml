@@ -49,4 +49,6 @@
 <a href='@Url.Action("Index", "Home")'>
   <button>Back</button>
 </a>
-<button class="red" onclick="showModal('delete-flavor')">Delete Flavor</button>
+@if(User.Identity.IsAuthenticated) {
+  <button class="red" onclick="showModal('delete-flavor')">Delete Flavor</button>
+}
