@@ -5,26 +5,13 @@
 @using TreatShop.Models
 @model Treat
 
-<div id="delete-treat-modal" class="modal delete-modal obscured">
-  <div class="modal-message">
-    <div>Are you sure you want to delete</div>
-    <div class="highlighted">@Html.DisplayFor(model => model.Name)?</div>
-  </div>
-  <div class="button-area">
-    @using (Html.BeginForm("Delete", "Treats", new { id = @Model.TreatId }))
-    {
-      <button class="red" type="submit">Delete</button>
-    }
-  </div>
-  <div class="button-area">
-    <button onclick="hideModal('delete-treat')">Cancel</button>
-  </div>
-</div>
-
 <h2>Treat Details for <span class="highlighted">@Html.DisplayFor(model => model.Name)</span></h2>
 
-<h3>Flavors</h3>
+<h3>Flavors:</h3>
 <ul class="treat-list">
+  @if (Model.JoinEntities.Count == 0) {
+    <div class="empty-list-message">There are no flavors associated with this treat!</div>
+  }
   @foreach(FlavorTreat join in Model.JoinEntities) {
     <li>
       <div>
@@ -37,19 +24,66 @@
       <input type="submit" value="Delete"/>
     } *@
   }
+  <button onclick="showModal('add-flavor')" class="green">Add a Flavor</button>
 </ul>
 
-@* <a href='@Url.Action("AddFlavor", new { id = Model.FlavorId })'>
-  <button>Add a Flavor</button>
-</a> *@
-
-@* <a href='@Url.Action("Edit", new { id = Model.FlavorId })'>
-  <button class="yellow">Edit Flavor</button>
-</a> *@
-@* <a href='@Url.Action("Delete", new { id = Model.FlavorId })'>
-  <button class="red">Delete Flavor</button>
-</a> *@
 <a href='@Url.Action("Index", "Home")'>
   <button>Back</button>
 </a>
-<button onclick="showModal('delete-treat')" class="red">Delete</button>
+
+@if (User.Identity.IsAuthenticated) 
+{
+  @* <button onclick="showModal('add-flavor')" class="green">Add a Flavor</button> *@
+
+  @* <a href='@Url.Action("Edit", new { id = Model.FlavorId })'>
+    <button class="yellow">Edit Flavor</button>
+  </a> *@
+
+  <button onclick="showModal('delete-treat')" class="red">Delete Treat</button>
+
+  <div id="add-flavor-modal" class="modal obscured">
+    <div class="modal-message">Add a Flavor to @Model.Name</div>
+    
+    <div class="error-messages">
+      @if(!ViewData.ModelState.IsValid) 
+      {
+        @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:") 
+      }
+    </div>
+
+    @using (Html.BeginForm("AddFlavor", "Treats"))
+    {
+      <input hidden value=@Model.TreatId name="id">;
+      <div class="form-row">
+        <h3>Flavor</h3>
+        <select name="flavorId">
+          <option value="" selected disabled hidden>Choose one</option>
+          @foreach (var flavor in ViewBag.Flavors) {
+            <option value=@flavor.FlavorId>@flavor.Name</option>
+          }
+        </select>
+      </div>
+      <button type="submit" onclick="hideModal('add-flavor')" class="green">Add</button>
+    }
+
+    <div class="button-area">
+      <button onclick="hideModal('add-flavor')">Cancel</button>
+    </div>
+  </div>
+
+  <div id="delete-treat-modal" class="modal delete-modal obscured">
+    <div class="modal-message">
+      <div>Are you sure you want to delete</div>
+      <div class="highlighted">@Html.DisplayFor(model => model.Name)?</div>
+    </div>
+    <div class="button-area">
+      @using (Html.BeginForm("Delete", "Treats", new { id = @Model.TreatId }))
+      {
+        <button class="red" type="submit">Delete</button>
+      }
+    </div>
+    <div class="button-area">
+      <button onclick="hideModal('delete-treat')">Cancel</button>
+    </div>
+  </div>
+}

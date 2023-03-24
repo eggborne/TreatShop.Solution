@@ -11,7 +11,7 @@ using TreatShop.Models;
 namespace TreatShop.Migrations
 {
     [DbContext(typeof(TreatShopContext))]
-    [Migration("20230324165320_AddInitial")]
+    [Migration("20230324212547_AddInitial")]
     partial class AddInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

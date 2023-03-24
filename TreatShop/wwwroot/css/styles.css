@@ -20,6 +20,16 @@ body {
 	user-select: none;
 }
 
+main {
+	transition: all 300ms ease-out;
+	transform-origin: top left;
+}
+
+main.obscured {
+	transform: scale(0.9);
+	opacity: 0;
+}
+
 header, footer {
   position: absolute;
 	left:0px;
@@ -131,6 +141,9 @@ form > .form-row:first-of-type {
 form > .form-row:last-of-type {
 	border-radius: 0 0 0.5rem 0.5rem;
 }
+form > .form-row:only-of-type {
+	border-radius: 0.5rem;
+}
 
 form > div {
 	display: flex;
@@ -155,6 +168,7 @@ form > .form-column {
 	padding: 1rem;
   gap: 1rem;
 }
+
 form > .form-column > div {
   width: 100%;
   display: flex;
@@ -170,6 +184,11 @@ form > .form-column > div {
   justify-content: space-between;
   gap: 4rem;
   width: 22rem;
+}
+
+.treat-list > button {
+	margin-top: 0;
+	margin-bottom: 0;
 }
 
 .highlighted {
@@ -381,7 +400,7 @@ span {
 	background-color: rgb(76, 64, 64);
 }
 
-.modal#create-flavor-modal {
+.modal#create-flavor-modal, .modal#add-flavor-modal {
 	background-color: var(--flavor-bg-color)
 }
 
@@ -389,7 +408,7 @@ span {
 	background-color: var(--treat-bg-color)
 }
 
-.not-logged-in-message {
+.not-logged-in-message, .empty-list-message {
 	margin: 1rem;
 	margin-top: 2rem;
 	font-style: italic;
