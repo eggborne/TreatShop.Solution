@@ -309,6 +309,7 @@ span {
 	display: grid;
 	grid-template-columns: 1fr;
 	grid-template-rows: calc(var(--header-height) * 1) 1fr min-content;
+	justify-items: center;
 	gap: 1rem;
 	padding: calc(var(--header-height) / 2);
 	transition: scale 300ms ease, opacity 200ms ease;

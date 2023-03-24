@@ -6,29 +6,35 @@
 
   <h3>Treats</h3>
   <ul class="treat-list">
-    <li>Treat 1</li>
-    <li>Treat 2</li>
+    @foreach (var treat in ViewBag.Treats) {
+      <li>
+        <div class="bold">@treat.Name</div>
+      </li>
+    }
   </ul>
 
   <h3>Flavors</h3>
   <ul class="flavor-list">
-    <li>Flavor 1</li>
-    <li>Flavor 2</li>
+    @foreach (var flavor in ViewBag.Flavors) {
+      <li>
+        <div class="bold">@flavor.Name</div>
+      </li>
+    }
   </ul>
 
   <div class="home-footer">
   @if (User.Identity.IsAuthenticated)
   {
     <div class="button-area">
-      <a href='@Url.Action("Index", "Books")'>
-        <button>Manage Books</button>
-      <a href='@Url.Action("Index", "Authors")'>
-        <button>Manage Authors</button>
+      <a href='@Url.Action("Index", "Treats")'>
+        <button>Manage Treats</button>
+      <a href='@Url.Action("Index", "Flavors")'>
+        <button>Manage Flavors</button>
       </a>
     </div>
   }
   else
   {
-    <p class="not-logged-in-message">Please <a onclick="showModal('login')">log in</a> to add or delete treats and flavors.</p>
+    <p class="not-logged-in-message">Please <a href='@Url.Action("Index", "Account")'>log in</a> to add or delete treats and flavors.</p>
   }
   </div>

@@ -1,15 +1,8 @@
-@using TreatShop.ViewModels
-
-@model LoginViewModel
-
 <header>
   <h1>Pierre's Sweet and Savory Treats</h1>
   <div class="button-area">
   @if (!User.Identity.IsAuthenticated) {
-    @await Html.PartialAsync("RegisterModal")
-    @await Html.PartialAsync("LoginModal")
-    <button class="green" onclick="showModal('login')">Log in</button>
-    <button class="yellow" onclick="showModal('register')">Register</button>
+    <a href='@Url.Action("Index", "Account")'>not logged in</a>
   } else {
     <div>logged in as <span class="highlighted">@User.Identity.Name</span></div>
     @using (Html.BeginForm("LogOff", "Account"))

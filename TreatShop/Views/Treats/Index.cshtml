@@ -1,0 +1,32 @@
+@{
+  Layout = "_Layout";
+}
+
+@using TreatShop.Models;
+
+<h2>All Treats</h2>
+
+
+@if (@Model.Count == 0)
+{
+  <h3>No treats have been added yet!</h3>
+} 
+
+<ul class="treat-list">
+  @foreach(Treat treat in Model)
+  {
+    <li>
+      <div>@treat.Name</div>
+      <a href='@Url.Action("Details", new { id = treat.TreatId })'>
+        <button>View Details</button>
+      </a>
+    </li>
+  }
+</ul>
+
+<a href='@Url.Action("Create")'>
+  <button class="green">Add New Treat</button>
+</a>
+<a href='@Url.Action("Index", "Home")'>
+  <button>Home</button>
+</a>
