@@ -3,6 +3,9 @@ window.addEventListener('load', () => {
 });
 
 const showModal = name => {
+  [...document.querySelectorAll(`.modal`)].forEach(modalElement => {
+    modalElement.classList.add('obscured');
+  });
   document.getElementById(`${name}-modal`).classList.remove('obscured');
 }
 const hideModal = name => {

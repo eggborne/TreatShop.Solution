@@ -7,18 +7,22 @@
   <h3>Treats</h3>
   <ul class="treat-list">
     @foreach (var treat in ViewBag.Treats) {
-      <li>
-        <div class="bold">@treat.Name</div>
-      </li>
+      <a href='@Url.Action("Details", "Treats", new { id = treat.TreatId })'>
+        <li class="detail-link">
+          <div>@treat.Name</div>
+        </li>
+      </a>
     }
   </ul>
 
   <h3>Flavors</h3>
   <ul class="flavor-list">
     @foreach (var flavor in ViewBag.Flavors) {
-      <li>
-        <div class="bold">@flavor.Name</div>
-      </li>
+      <a href='@Url.Action("Details", "Flavors", new { id = flavor.FlavorId })'>
+        <li class="detail-link">
+          <div>@flavor.Name</div>
+        </li>
+      </a>
     }
   </ul>
 
@@ -28,8 +32,8 @@
     @await Html.PartialAsync("CreateTreatModal")
     @await Html.PartialAsync("CreateFlavorModal")
     <div class="button-area">
-      <button onclick="showModal('create-treat')">Create a Treat</button>
-      <button onclick="showModal('create-flavor')">Create a Flavor</button>
+      <button class="treat" onclick="showModal('create-treat')">Create a Treat</button>
+      <button class="flavor" onclick="showModal('create-flavor')">Create a Flavor</button>
     </div>
   }
   else

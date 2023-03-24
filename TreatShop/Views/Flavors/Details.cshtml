@@ -1,0 +1,52 @@
+@{
+  Layout = "_Layout";
+}
+
+@using TreatShop.Models
+@model Flavor
+
+<div id="delete-flavor-modal" class="modal delete-modal obscured">
+  <div class="modal-message">
+    <div>Are you sure you want to delete</div>
+    <div class="highlighted">@Html.DisplayFor(model => model.Name)?</div>
+  </div>
+  <div class="button-area">
+    @using (Html.BeginForm("Delete", "Flavors", new { id = @Model.FlavorId }))
+    {
+      <button class="red" type="submit">Delete</button>
+    }
+  </div>
+  <div class="button-area">
+    <button onclick="hideModal('delete-flavor')">Cancel</button>
+  </div>
+</div>
+
+<h2>Flavor Details for <span class="highlighted">@Html.DisplayFor(model => model.Name)</span></h2>
+
+<h3>Treats with this flavor:</h3>
+<ul class="treat-list">
+  @foreach(FlavorTreat join in Model.JoinEntities) {
+    <li>
+      <div>
+        @join.Treat.Name
+      </div>
+    </li>
+    @* @using (Html.BeginForm("DeleteJoin", "Flavors"))
+    {
+      @Html.Hidden("joinId", @join.FlavorTreatId)
+      <input type="submit" value="Delete"/>
+    } *@
+  }
+</ul>
+
+@* <a href='@Url.Action("AddTreat", new { id = Model.FlavorId })'>
+  <button>Add a Treat</button>
+</a> *@
+
+@* <a href='@Url.Action("Edit", new { id = Model.FlavorId })'>
+  <button class="yellow">Edit Flavor</button>
+</a> *@
+<a href='@Url.Action("Index", "Home")'>
+  <button>Back</button>
+</a>
+<button class="red" onclick="showModal('delete-flavor')">Delete Flavor</button>

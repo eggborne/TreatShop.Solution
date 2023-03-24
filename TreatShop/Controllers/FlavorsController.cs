@@ -39,6 +39,8 @@ namespace TreatShop.Controllers
     public ActionResult Details(int id)
     {
       Flavor thisTreat = _db.Flavors
+                        .Include(flavor => flavor.JoinEntities)
+                        .ThenInclude(join => join.Treat)
                         .FirstOrDefault(flavor => flavor.FlavorId == id);
       return View(thisTreat);
     }
@@ -57,19 +59,13 @@ namespace TreatShop.Controllers
       return RedirectToAction("Index");
     }
 
+    [HttpPost]
     public ActionResult Delete(int id)
     {
-      Flavor thisTreat = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
-      return View(thisTreat);
-    }
-
-    [HttpPost, ActionName("Delete")]
-    public ActionResult DeleteConfirmed(int id)
-    {
-      Flavor thisTreat = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
-      _db.Flavors.Remove(thisTreat);
+      Flavor thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
+      _db.Flavors.Remove(thisFlavor);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Index", "Home");
     }
   }
 }

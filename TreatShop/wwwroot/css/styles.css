@@ -1,7 +1,9 @@
 :root {
   --header-height: 4rem;
-	--flavor-color: #4b3b28;
-	--treat-color: #282d4b;
+	--flavor-bg-color: #4b3b28;
+	--treat-bg-color: #282d4b;
+	--flavor-color: #8e6b40;
+	--treat-color: #3e4a92;
 }
 
 *, * *, * * * {
@@ -15,6 +17,7 @@ body {
 	background-color: #222;
 	color: #ddd;
   padding: var(--header-height) 0;
+	user-select: none;
 }
 
 header, footer {
@@ -85,24 +88,28 @@ ul {
 
 li {
 	position: relative;
+  width: min-content;
+  min-width: 8rem;
 	background-color: #ffffff22;
-	padding: 0 1rem;
 	border-radius: 0.5rem;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+  justify-content: center;
 	gap: 1rem;
+	padding: 1rem;
+}
+
+.detail-link {
+	cursor: pointer;
+}
+
+.detail-link:hover {
+	background-color: rgb(73, 62, 41);
+	outline: 0.25rem solid blue;
 }
 
 textarea {
   height: 4rem;
-}
-
-li {
-  padding: 1rem;
-  width: min-content;
-  min-width: 8rem;
-  justify-content: center;
 }
 
 .appointment-list {
@@ -116,7 +123,6 @@ form {
 	width: min-content;
 	max-width: 100%;
 	border-radius: 0.5rem;
-	/* overflow: hidden; */
 }
 
 form > .form-row:first-of-type {
@@ -207,6 +213,14 @@ button.yellow {
 
 button.red {
 	background-color: rgb(159, 0, 0);
+}
+
+button.flavor {
+	background-color: var(--flavor-color);
+}
+
+button.treat {
+	background-color: var(--treat-color);
 }
 
 button:hover {
@@ -327,8 +341,10 @@ span {
 	font-size: 1.5rem;
 	width: 100%;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	gap: 0.5rem;
 }
 
 .modal > .modal-message > .highlighted {
@@ -348,7 +364,7 @@ span {
 	min-height: unset;
 }
 
-.modal#delete-modal button:not(.red) {
+.modal.delete-modal button:not(.red) {
 	padding: 1rem 3rem;
 	margin: 1rem;
 }
@@ -361,16 +377,16 @@ span {
 	background-color: rgb(116, 124, 74);
 }
 
-.modal#delete-modal {
+.modal.delete-modal {
 	background-color: rgb(76, 64, 64);
 }
 
 .modal#create-flavor-modal {
-	background-color: var(--flavor-color)
+	background-color: var(--flavor-bg-color)
 }
 
 .modal#create-treat-modal {
-	background-color: var(--treat-color)
+	background-color: var(--treat-bg-color)
 }
 
 .not-logged-in-message {
