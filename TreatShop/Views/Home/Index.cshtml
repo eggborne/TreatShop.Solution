@@ -4,33 +4,31 @@
 
 @using TreatShop.Models;
 
-<div class="flavorIndexLayout">
+  <h3>Treats</h3>
+  <ul class="treat-list">
+    <li>Treat 1</li>
+    <li>Treat 2</li>
+  </ul>
 
+  <h3>Flavors</h3>
+  <ul class="flavor-list">
+    <li>Flavor 1</li>
+    <li>Flavor 2</li>
+  </ul>
+
+  <div class="home-footer">
   @if (User.Identity.IsAuthenticated)
   {
     <div class="button-area">
-      <div class="flavor-links">
-      <span>@Html.ActionLink(".Manage flavors", "Index", "Flavors")</span> 
-      <span>@Html.ActionLink(".Manage treats", "Index", "Treats")</span>
-      <span>@Html.ActionLink(".Create or manage an account", "Index", "Account")</span>
+      <a href='@Url.Action("Index", "Books")'>
+        <button>Manage Books</button>
+      <a href='@Url.Action("Index", "Authors")'>
+        <button>Manage Authors</button>
+      </a>
     </div>
-
-  </div>
   }
   else
   {
-    <h3>Treats</h3>
-    <ul class="treat-list">
-      <li>Treat 1</li>
-      <li>Treat 2</li>
-    </ul>
-
-    <h3>Flavors</h3>
-    <ul class="flavor-list">
-      <li>Flavor 1</li>
-      <li>Flavor 2</li>
-    </ul>
-
     <p class="not-logged-in-message">Please <a onclick="showModal('login')">log in</a> to add or delete treats and flavors.</p>
   }
-</div>
+  </div>
