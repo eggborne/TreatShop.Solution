@@ -404,7 +404,7 @@ span {
 	background-color: var(--flavor-bg-color)
 }
 
-.modal#create-treat-modal {
+.modal#create-treat-modal, .modal#add-treat-modal {
 	background-color: var(--treat-bg-color)
 }
 

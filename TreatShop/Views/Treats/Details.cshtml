@@ -24,7 +24,9 @@
       <input type="submit" value="Delete"/>
     } *@
   }
-  <button onclick="showModal('add-flavor')" class="green">Add a Flavor</button>
+  @if (User.Identity.IsAuthenticated) {
+    <button onclick="showModal('add-flavor')" class="green">Add a Flavor</button>
+  }
 </ul>
 
 <a href='@Url.Action("Index", "Home")'>
@@ -33,10 +35,9 @@
 
 @if (User.Identity.IsAuthenticated) 
 {
-  @* <button onclick="showModal('add-flavor')" class="green">Add a Flavor</button> *@
 
-  @* <a href='@Url.Action("Edit", new { id = Model.FlavorId })'>
-    <button class="yellow">Edit Flavor</button>
+  @* <a href='@Url.Action("Edit", new { id = Model.TreatId })'>
+    <button class="yellow">Edit Treat</button>
   </a> *@
 
   <button onclick="showModal('delete-treat')" class="red">Delete Treat</button>
