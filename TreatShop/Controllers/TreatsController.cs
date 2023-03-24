@@ -22,11 +22,13 @@ namespace TreatShop.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Treat treat)
+    public ActionResult Create(Treat treat, int flavorId)
     {
       _db.Treats.Add(treat);
-
       _db.SaveChanges();
+
+      AddFlavor(treat.TreatId, flavorId);
+
       return RedirectToAction("Index", "Home");
     }
 

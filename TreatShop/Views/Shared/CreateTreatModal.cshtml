@@ -21,10 +21,10 @@
     </div>
     <div class="form-row">
       <h3>Flavor</h3>
-      <select>
+      <select name="flavorId">
         <option value="" selected disabled hidden>Choose one</option>
         @foreach (var flavor in ViewBag.Flavors) {
-          <option name="FlavorId" value=@flavor.FlavorId>@flavor.Name</option>
+          <option name="flavorId" value=@flavor.FlavorId>@flavor.Name</option>
         }
       </select>
     </div>
