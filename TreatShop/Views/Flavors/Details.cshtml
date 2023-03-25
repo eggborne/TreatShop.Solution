@@ -38,6 +38,7 @@
 </a>
 
 @if(User.Identity.IsAuthenticated) {
+  <button class="yellow" onclick="showModal('edit-flavor')">Edit Flavor</button>
   <button class="red" onclick="showModal('delete-flavor')">Delete Flavor</button>
 
   <div id="add-treat-modal" class="modal obscured">
@@ -69,6 +70,34 @@
 
     <div class="button-area">
       <button onclick="hideModal('add-treat')">Cancel</button>
+    </div>
+  </div>
+
+  
+  <div id="edit-flavor-modal" class="modal edit-modal obscured">
+    <div class="modal-message">Edit Flavor <span class="highlighted">@Model.Name</span></div>
+    
+    <div class="error-messages">
+      @if(!ViewData.ModelState.IsValid) 
+      {
+        @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:") 
+      }
+    </div>
+
+    @using (Html.BeginForm("Edit", "Flavors"))
+    {
+      <input hidden name="FlavorId" value=@Model.FlavorId />
+      <div class="form-row">
+        <div class="form-text-input-area">
+          <span>@Html.LabelFor(model => model.Name)</span>
+          <span>@Html.EditorFor(model => model.Name)</span>
+        </div>
+      </div>
+      <button class="green" type="submit">Save Changes</button>
+    }
+
+    <div class="button-area">
+      <button onclick="hideModal('edit-flavor')">Cancel</button>
     </div>
   </div>
 

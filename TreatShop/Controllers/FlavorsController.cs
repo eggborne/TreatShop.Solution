@@ -44,18 +44,13 @@ namespace TreatShop.Controllers
       return View(thisFlavor);
     }
 
-    public ActionResult Edit(int id)
-    {
-      Flavor thisTreat = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
-      return View(thisTreat);
-    }
-
+    
     [HttpPost]
     public ActionResult Edit(Flavor flavor)
     {
       _db.Flavors.Update(flavor);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = flavor.FlavorId });
     }
 
     [HttpPost]
@@ -66,9 +61,6 @@ namespace TreatShop.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index", "Home");
     }
-
-
-
 
     [HttpPost]
     public ActionResult AddTreat(int id, int treatId)
