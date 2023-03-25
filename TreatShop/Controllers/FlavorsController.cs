@@ -24,10 +24,17 @@ namespace TreatShop.Controllers
     [HttpPost]
     public ActionResult Create(Flavor flavor)
     {
-      _db.Flavors.Add(flavor);
-      _db.SaveChanges();
+      if (!ModelState.IsValid)
+      {
+        return RedirectToAction("Index", "Home");
+      }
+      else
+      {
+        _db.Flavors.Add(flavor);
+        _db.SaveChanges();
 
-      return RedirectToAction("Index", "Home");
+        return RedirectToAction("Index", "Home");
+      }
     }
 
     [AllowAnonymous]
@@ -48,9 +55,16 @@ namespace TreatShop.Controllers
     [HttpPost]
     public ActionResult Edit(Flavor flavor)
     {
-      _db.Flavors.Update(flavor);
-      _db.SaveChanges();
-      return RedirectToAction("Details", new { id = flavor.FlavorId });
+      if (!ModelState.IsValid)
+      {
+        return RedirectToAction("Details", new { id = flavor.FlavorId });
+      }
+      else
+      {
+        _db.Flavors.Update(flavor);
+        _db.SaveChanges();
+        return RedirectToAction("Details", new { id = flavor.FlavorId });
+      }
     }
 
     [HttpPost]
