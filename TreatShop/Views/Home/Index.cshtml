@@ -5,6 +5,9 @@
 @using TreatShop.Models;
 
   <h3>Treats</h3>
+  @if (ViewBag.Treats.Count == 0) {
+    <div class="empty-list-message">No Treats have been added yet!</div>
+  }
   <ul class="result-list treat">
     @foreach (var treat in ViewBag.Treats) {
       <a href='@Url.Action("Details", "Treats", new { id = treat.TreatId })'>
@@ -16,6 +19,9 @@
   </ul>
 
   <h3>Flavors</h3>
+  @if (ViewBag.Flavors.Count == 0) {
+    <div class="empty-list-message">No Flavors have been added yet!</div>
+  }
   <ul class="result-list flavor">
     @foreach (var flavor in ViewBag.Flavors) {
       <a href='@Url.Action("Details", "Flavors", new { id = flavor.FlavorId })'>

@@ -40,6 +40,7 @@
     <button class="yellow">Edit Treat</button>
   </a> *@
 
+  <button onclick="showModal('edit-treat')" class="yellow">Edit Treat</button>
   <button onclick="showModal('delete-treat')" class="red">Delete Treat</button>
 
   <div id="add-flavor-modal" class="modal obscured">
@@ -70,6 +71,33 @@
       <button onclick="hideModal('add-flavor')">Cancel</button>
     </div>
   </div>
+
+  <div id="edit-treat-modal" class="modal edit-modal obscured">
+  <div class="modal-message">Edit Treat <span class="highlighted">@Model.Name</span></div>
+  
+  <div class="error-messages">
+    @if(!ViewData.ModelState.IsValid) 
+    {
+      @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:") 
+    }
+  </div>
+
+  @using (Html.BeginForm("Edit", "Treats"))
+  {
+    <input name="TreatId" value=@Model.TreatId />
+    <div class="form-row">
+      <div class="form-text-input-area">
+        <span>@Html.LabelFor(model => model.Name)</span>
+        <span>@Html.EditorFor(model => model.Name)</span>
+      </div>
+    </div>
+    <button class="green" type="submit">Save Changes</button>
+  }
+
+  <div class="button-area">
+    <button onclick="hideModal('edit-treat')">Cancel</button>
+  </div>
+</div>
 
   <div id="delete-treat-modal" class="modal delete-modal obscured">
     <div class="modal-message">
