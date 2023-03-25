@@ -18,6 +18,13 @@
       <div>
         @join.Treat.Name
       </div>
+      @if (User.Identity.IsAuthenticated) {
+        @using (Html.BeginForm("DeleteJoin", "Flavors"))
+        {
+          @Html.Hidden("joinId", @join.FlavorTreatId)
+          <button class="x-button" type="submit"></button>
+        }
+      }
     </li>
     </a>
     @* @using (Html.BeginForm("DeleteJoin", "Flavors"))

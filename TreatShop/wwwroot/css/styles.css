@@ -223,7 +223,7 @@ button {
 }
 
 button.admin {
-	border: 0.2rem dashed rgb(47, 0, 128);
+	border: 0.2rem dashed rgba(47, 0, 128, 0.5);
 }
 
 button.green {
@@ -442,6 +442,19 @@ span {
 	margin-top: 2rem;
 	font-style: italic;
 	opacity: 0.8;
+}
+
+.x-button, .x-button::after {
+	border-radius: 0.125rem;
+	padding: 0;
+	margin: 0;
+	width: calc(var(--header-height) / 2);
+	height: calc(var(--header-height) / 2);
+	background-color: red;
+}
+.x-button::after {
+	content: "X";
+	color: white;
 }
 
 @keyframes flash-on {
