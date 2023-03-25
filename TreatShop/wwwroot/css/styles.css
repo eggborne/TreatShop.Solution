@@ -222,6 +222,10 @@ button {
   border-width: 0;
 }
 
+button.admin {
+	border: 0.2rem dashed rgb(47, 0, 128);
+}
+
 button.green {
 	background-color: green;
 }

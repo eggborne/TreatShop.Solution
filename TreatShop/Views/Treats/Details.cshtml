@@ -25,7 +25,7 @@
     } *@
   }
   @if (User.Identity.IsAuthenticated) {
-    <button onclick="showModal('add-flavor')" class="green">Add a Flavor</button>
+    <button onclick="showModal('add-flavor')" class="green admin">Add a Flavor</button>
   }
 </ul>
 
@@ -35,8 +35,8 @@
 
 @if (User.Identity.IsAuthenticated) 
 {
-  <button onclick="showModal('edit-treat')" class="yellow">Edit Treat</button>
-  <button onclick="showModal('delete-treat')" class="red">Delete Treat</button>
+  <button onclick="showModal('edit-treat')" class="yellow admin">Edit Treat</button>
+  <button onclick="showModal('delete-treat')" class="red admin">Delete Treat</button>
 
   <div id="add-flavor-modal" class="modal obscured">
     <div class="modal-message">Add a Flavor to <span class="highlighted">@Model.Name</span></div>
