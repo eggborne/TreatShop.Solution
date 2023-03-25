@@ -13,11 +13,13 @@
     <div class="empty-list-message">There are no treats associated with this flavor!</div>
   }
   @foreach(FlavorTreat join in Model.JoinEntities) {
+    <a href='@Url.Action("Details", "Treats", new { id = join.Treat.TreatId })'>
     <li>
       <div>
         @join.Treat.Name
       </div>
     </li>
+    </a>
     @* @using (Html.BeginForm("DeleteJoin", "Flavors"))
     {
       @Html.Hidden("joinId", @join.FlavorTreatId)
@@ -28,10 +30,6 @@
     <button onclick="showModal('add-treat')" class="green admin">Add a Treat</button>
   }
 </ul>
-
-@* <a href='@Url.Action("Edit", new { id = Model.FlavorId })'>
-  <button class="yellow">Edit Flavor</button>
-</a> *@
 
 <a href='@Url.Action("Index", "Home")'>
   <button>Home</button>
