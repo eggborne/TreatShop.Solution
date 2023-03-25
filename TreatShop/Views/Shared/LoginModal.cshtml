@@ -3,13 +3,6 @@
 
 <div id="login-modal" class="modal obscured">
   <div class="modal-message">Log in</div>
-  
-  <div class="error-messages">
-    @if(!ViewData.ModelState.IsValid) 
-    {
-      @Html.ValidationSummary("Please fix the following error(s) and then resubmit the form:") 
-    }
-  </div>
 
   @using (Html.BeginForm("Login", "Account"))
   {

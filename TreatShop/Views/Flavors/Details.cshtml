@@ -27,11 +27,6 @@
       }
     </li>
     </a>
-    @* @using (Html.BeginForm("DeleteJoin", "Flavors"))
-    {
-      @Html.Hidden("joinId", @join.FlavorTreatId)
-      <input type="submit" value="Delete"/>
-    } *@
   }
   @if (User.Identity.IsAuthenticated) {
     <button onclick="showModal('add-treat')" class="green admin">Add a Treat</button>

@@ -34,7 +34,7 @@ namespace TreatShop.Controllers
     {
       if (!ModelState.IsValid)
       {
-        return View(model);
+        return RedirectToAction("Index", "Account");
       }
       else
       {
@@ -42,7 +42,15 @@ namespace TreatShop.Controllers
         IdentityResult result = await _userManager.CreateAsync(user, model.Password);
         if (result.Succeeded)
         {
-          return RedirectToAction("Index", "Home");
+          Microsoft.AspNetCore.Identity.SignInResult loginResult = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
+          if (loginResult.Succeeded)
+          {
+            return RedirectToAction("Index", "Home");
+          }
+          else
+          {
+            return RedirectToAction("Index", "Account");
+          }
         }
         else
         {
@@ -55,17 +63,12 @@ namespace TreatShop.Controllers
       }
     }
 
-    public ActionResult Login()
-    {
-      return View();
-    }
-
     [HttpPost]
     public async Task<ActionResult> Login(LoginViewModel model)
     {
       if (!ModelState.IsValid)
       {
-        return View(model);
+        return RedirectToAction("Index", "Account");
       }
       else
       {
@@ -77,7 +80,7 @@ namespace TreatShop.Controllers
         else
         {
           ModelState.AddModelError("", "There is something wrong with your email or username. Please try again.");
-          return View(model);
+          return RedirectToAction("Index", "Account");
         }
       }
     }
